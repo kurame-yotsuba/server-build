@@ -37,13 +37,3 @@ vi /etc/chrony.conf
 #================================================
 # Plex Media Serverの設定
 #================================================
-
-dnf install wget git unzip bzip2 gcc gcc-c++ make automake kernel-devel patch perl-ExtUtils-MakeMaker libtool openssl-devel boost-devel cmake -y
-
-
-dnf --enablerepo=PowerTools install autogen nkf -y
-dnf --enablerepo=epel install dkms -y
-
-dnf install ccid -y
-dnf --enablerepo=PowerTools install pcsc-lite-devel -y
-dnf --enablerepo=epel install pcsc-tools -y

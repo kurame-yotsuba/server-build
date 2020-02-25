@@ -1,0 +1,16 @@
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.debian.pcsc-lite.access_pcsc"
+        && subject.user == "gen") {
+
+        return polkit.Result.YES;
+    }
+});
+
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.debian.pcsc-lite.access_card"
+        && action.lookup("reader") == "SCM Microsystems Inc. SCR 3310 [CCID Interface] (53311943203951) 00 00"
+        && subject.user == "gen") {
+
+        return polkit.Result.YES;
+    }
+});
