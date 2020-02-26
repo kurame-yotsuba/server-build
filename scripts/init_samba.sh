@@ -2,9 +2,10 @@
 
 #================================================
 # Sambaの設定
+# 先にマウントを終わらせていること
 #================================================
 
-dnf install samba samba.client winbind winbind.client -y
+dnf install samba samba-client samba-winbind samba-winbind-clients -y
 
 firewall-cmd --add-service=samba --permanent --zone=public
 firewall-cmd --add-service=samba-client --permanent --zone=public
@@ -22,5 +23,10 @@ cat res/smb.conf > /etc/samba/smb.conf
 systemctl enable smb --now
 systemctl enable nmb --now
 systemctl enable winbind --now
+
+# pdbedit -a ユーザ名
+# でSambaユーザの作成をする
+# Sambaユーザはシステムにいるユーザであること
+
 
 # 上手くいかなかったらクライアントを再起動してみる
