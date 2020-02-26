@@ -4,8 +4,8 @@
 CentOS8でやっています。
 
 まずは
-```bash
-chmod -R 755 scripts
+```sh
+find scripts/ -type f -name *.sh
 ```
 を実行しましょう。
 
