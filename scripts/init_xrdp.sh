@@ -7,7 +7,7 @@
 #================================================
 
 # 必要なパッケージのインストール
-dnf --enablerepo=epel install xrdp tigervnc-server
+dnf --enablerepo=epel install xrdp tigervnc-server -y
 
 # 有効化＋起動
 systemctl enable xrdp --now
