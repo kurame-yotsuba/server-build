@@ -16,6 +16,9 @@ dnf install ccid -y
 dnf --enablerepo=PowerTools install pcsc-lite-devel -y
 dnf --enablerepo=epel install pcsc-tools -y
 
+# PCSC用のルールファイル作成
+cat $script_dir/res/pcsc.rules > /etc/polkit-1/rules.d/pcsc.rules
+
 # arib25のインストール
 mkdir ~/src
 cd ~/src
