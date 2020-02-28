@@ -5,6 +5,8 @@
 # 先にマウントを終わらせていること
 #================================================
 
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+
 dnf install samba samba-client samba-winbind samba-winbind-clients -y
 
 firewall-cmd --add-service=samba --permanent --zone=public
@@ -18,15 +20,15 @@ setsebool -P tmpreaper_use_samba on
 
 # オリジナルの設定ファイルのバックアップ
 mv /etc/samba/smb.conf /etc/samba/smb.conf.original
-cat res/smb.conf > /etc/samba/smb.conf
+cat $SCRIPT_DIR/smb.conf > /etc/samba/smb.conf
 
 systemctl enable smb --now
 systemctl enable nmb --now
 systemctl enable winbind --now
 
-# pdbedit -a ユーザ名
-# でSambaユーザの作成をする
-# Sambaユーザはシステムにいるユーザであること
-
-
-# 上手くいかなかったらクライアントを再起動してみる
+echo "==========================================="
+echo "pdbedit -a ユーザ名"
+echo "でSambaユーザの作成をしてください。"
+echo "Sambaユーザはシステムにいるユーザであること"
+echo "上手くいかなかったらクライアントを再起動してみる"
+echo "==========================================="
