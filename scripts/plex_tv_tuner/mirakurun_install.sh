@@ -8,7 +8,7 @@
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
 # nvmとnodejsのインストール
-$SCRIPT_DIR/install_node_lts.sh
+$SCRIPT_DIR/node_lts_install.sh
 
 . ~/.bashrc
 
@@ -18,7 +18,7 @@ npm install mirakurun -g --unsafe --production
 npm install arib-b25-stream-test -g --unsafe
 
 # mirakurunユーザの作成
-$SCRIPT_DIR/make_mirakurun_user.sh
+$SCRIPT_DIR/mirakurun_user_make.sh
 
 # statusがonlineなら正常
 pm2 status
