@@ -5,7 +5,7 @@
 #================================================
 
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
-NODE_INSTALL_SCRIPT="install_node_lts.sh"
+NODE_INSTALL_SCRIPT="node_lts_install.sh"
 
 # rivarunはユーザ側にインストールする
 # mirakurunユーザの作成
