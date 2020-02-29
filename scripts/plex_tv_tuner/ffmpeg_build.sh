@@ -10,7 +10,7 @@ enable_ogg=1
 enable_opus=1
 enable_ass=1
 
-src_dir="$HOME/ffmpeg_sources"
+src_dir="$HOME/src/ffmpeg_sources"
 prefix_dir="/usr/local/ffmpeg_build"
 
 export PATH=$prefix_dir/bin:$PATH
