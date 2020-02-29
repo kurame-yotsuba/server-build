@@ -24,7 +24,7 @@ $SCRIPT_DIR/mirakurun_user_make.sh
 pm2 status
 
 # tuners.yamlのコピー
-mv /usr/local/etc/mirakurun/tuners.yaml /usr/local/etc/mirakurun/tuners.yaml.original
+mv /usr/local/etc/mirakurun/tuners.yml /usr/local/etc/mirakurun/tuners.yml.original
 cat $SCRIPT_DIR/tuners.yml > /usr/local/etc/mirakurun/tuners.yml
 
 mirakurun restart
