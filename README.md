@@ -5,7 +5,7 @@ CentOS8でやっています。
 
 まずは
 ```sh
-find scripts/ -type f -name *.sh
+find scripts/ -type f -name *.sh | xargs chmod 755
 ```
 を実行しましょう。
 
