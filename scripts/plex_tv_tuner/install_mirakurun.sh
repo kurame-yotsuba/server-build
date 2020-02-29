@@ -7,20 +7,15 @@
 
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
-# nodejsとかグローバルにインストールしていいの？っていう問題がある。
-# nvmのインストール
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
-
-# nodejs（12.16.1）のインストール
-# サポートバージョンは以下を参照
-# https://github.com/Chinachu/Mirakurun/blob/master/doc/Platforms.md
-nvm install --lts
+# nvmとnodejsのインストール
+$SCRIPT_DIR/install_node_lts.sh
 
 # Mirakurunのインストール
 npm install pm2 -g
 npm install mirakurun -g --unsafe --production
-npm install rivarun -g
 npm install arib-b25-stream-test -g --unsafe
+
+$SCRIPT_DIR/make_mirakurun_user.sh
 
 # statusがonlineなら正常
 pm2 status
