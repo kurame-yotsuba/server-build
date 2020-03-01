@@ -34,3 +34,18 @@ PowerToolsリポジトリを使う。
 参考：
 - [録画サーバ構築の前準備（CentOS 7編）、Chinachu・epgrec UNA対応](https://www.jifu-labo.net/2015/09/centos7_pre/)
 - [PLEX社製TVチューナーの非公式Linuxドライバインストール方法 ](https://www.jifu-labo.net/2019/01/unofficial_plex_driver/)
+
+
+## SELinuxをdisabledにしてからenforcingに変えて死
+
+https://www.linuxtechi.com/boot-centos-8-rhel-8-single-user-mode/
+
+https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/sect-security-enhanced_linux-working_with_selinux-changing_selinux_modes
+
+
+## KVMで仮想ブリッジ
+- [KVMでゲストOSをブリッジ接続する](https://qiita.com/yoshiyasu1111/items/8d07a4fd55116fba07f7)
+- [LinuxからSambaをマウントする](https://qiita.com/dojineko/items/e6c21f3fe309b5aae694)
+- [samba-client／cifs-utilsを使ってWindowsの共有フォルダをマウントする](https://qiita.com/You_name_is_YU/items/85ffbffee744f6f494ed)
+- [spice-client-error-quark: Could not redirect](https://bbs.archlinux.org/viewtopic.php?pid=1628757#p1628757)
+- [](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/6/html/virtualization_administration_guide/sect-managing_guest_virtual_machines_with_virsh-attaching_and_updating_a_device_with_virsh)

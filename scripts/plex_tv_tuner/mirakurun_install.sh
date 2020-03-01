@@ -6,26 +6,25 @@
 #================================================
 
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
+res_dir=$SCRIPT_DIR/res
 
-# nvmとnodejsのインストール
-$SCRIPT_DIR/node_lts_install.sh
-
-. ~/.bashrc
+# nodejsのインストール
+curl -sL https://rpm.nodesource.com/setup_12.x | bash -
+dnf upgrade -y
+dnf install nodejs
 
 # Mirakurunのインストール
 npm install pm2 -g
 npm install mirakurun -g --unsafe --production
+npm install rivarun -g
 npm install arib-b25-stream-test -g --unsafe
-
-# mirakurunユーザの作成
-$SCRIPT_DIR/mirakurun_user_make.sh
 
 # statusがonlineなら正常
 pm2 status
 
-# tuners.yamlのコピー
+# tuners.ymlのコピー
 mv /usr/local/etc/mirakurun/tuners.yml /usr/local/etc/mirakurun/tuners.yml.original
-cat $SCRIPT_DIR/tuners.yml > /usr/local/etc/mirakurun/tuners.yml
+cat $res_dir/tuners.yml > /usr/local/etc/mirakurun/tuners.yml
 
 mirakurun restart
 
@@ -33,16 +32,18 @@ curl -X PUT "http://localhost:40772/api/config/channels/scan"
 
 mirakurun restart
 
+# ログ管理用にlogrotateインストール
+pm2 install pm2-logrotate
+cat $SCRIPT_DIR/mirakurun.log.conf > /etc/logrotate.d/mirakurun
+
+exit 0
+
+
 # 待つ
 
 # このコマンドで空のservicesが消えたらOK
-echo "rivarun --list | sed 's/},/},\n/g'" | su - mirakurun
+rivarun --list | sed 's/},/},\n/g'
 
 # 録画確認
-echo "rivarun --b25 --sid 1024 --ch GR/27 15 test2.ts" | su - mirakurun
-echo "rivarun --b25 --mirakurun localhost:40772 --sid 1024 --ch GR/27 15 test3.ts" | su - mirakurun
-
-# ログ管理用
-pm2 install pm2-logrotate
-
-cat $SCRIPT_DIR/mirakurun.log.conf > /etc/logrotate.d/mirakurun
+rivarun --b25 --sid 1024 --ch GR/27 15 test2.ts
+rivarun --b25 --mirakurun localhost:40772 --sid 1024 --ch GR/27 15 test3.ts

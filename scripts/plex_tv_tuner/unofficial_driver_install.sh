@@ -6,6 +6,22 @@
 #================================================
 
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
+res_dir=$SCRIPT_DIR/res
+
+#================================================
+# パッケージのアップグレード
+#================================================
+dnf upgrade -y
+
+# EPELリポジトリの追加
+dnf install epel-release -y
+
+# デフォルトで無効
+# 使用するときは --enablerepo=epel
+dnf config-manager --disable epel
+
+dnf --enablerepo=epel upgrade -y
+
 
 # 各種パッケージのインストール
 dnf install wget git unzip bzip2 gcc gcc-c++ make automake kernel-devel patch perl-ExtUtils-MakeMaker libtool openssl-devel boost-devel cmake -y
@@ -18,7 +34,7 @@ dnf --enablerepo=PowerTools install pcsc-lite-devel -y
 dnf --enablerepo=epel install pcsc-tools -y
 
 # PCSC用のルールファイル作成
-cat $SCRIPT_DIR/pcsc.rules > /etc/polkit-1/rules.d/pcsc.rules
+cat $res_dir/pcsc.rules > /etc/polkit-1/rules.d/pcsc.rules
 
 systemctl enable pcscd --now
 

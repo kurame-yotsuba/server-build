@@ -1,7 +1,6 @@
 
-#################################################
+#================================================
 # user added
-#################################################
-/dev/sdb1                   /mnt/fs         				xfs     defaults        0 0
-/dev/sdb2                   /mnt/home       				xfs     defaults        0 0
-/dev/sdb3                   /var/lib/libvirt/images         xfs     defaults        0 0
+#================================================
+/dev/sdb1		/mnt/fs							xfs		defaults	0 0
+/dev/sdb2		/var/lib/libvirt/images			xfs		defaults	0 0
