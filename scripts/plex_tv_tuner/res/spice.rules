@@ -1,6 +1,6 @@
 polkit.addRule(function(action, subject) {
     if (action.id == "org.spice-space.lowlevelusbaccess"
-		&& subject.user == "gen") {
+		&& subject.user == "tv-rec") {
 
 		return polkit.Result.YES;
     }
