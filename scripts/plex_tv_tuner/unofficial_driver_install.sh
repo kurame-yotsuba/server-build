@@ -22,6 +22,8 @@ dnf config-manager --disable epel
 
 dnf --enablerepo=epel upgrade -y
 
+cat $res_dir/fstab_kvm.user >> /etc/fstab
+
 
 # 各種パッケージのインストール
 dnf install wget git unzip bzip2 gcc gcc-c++ make automake kernel-devel patch perl-ExtUtils-MakeMaker libtool openssl-devel boost-devel cmake -y
@@ -60,7 +62,7 @@ unzip pxw3u4_BDA_ver1x64.zip
 cp -p it930x-firmware.bin /lib/firmware/
 cd ..
 
-cat $SCRIPT_DIR/dkms.install > dkms.install
+cat $res_dir/dkms.install > dkms.install
 bash dkms.install
 
 echo "================================================="
