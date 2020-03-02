@@ -22,6 +22,7 @@ dnf config-manager --disable epel
 
 dnf --enablerepo=epel upgrade -y
 
+dnf install -y samba-client cifs-utils
 cat $res_dir/fstab_kvm.user >> /etc/fstab
 
 
