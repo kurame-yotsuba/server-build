@@ -102,4 +102,4 @@ make
 make install
 
 # 録画確認
-recpt1_px4 --b25 --strip 27 10 ~/test.ts
+recpx4 --b25 --strip 27 10 ~/test.ts
