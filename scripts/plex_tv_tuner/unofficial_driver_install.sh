@@ -8,51 +8,32 @@
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 res_dir=$SCRIPT_DIR/res
 
-#================================================
-# パッケージのアップグレード
-#================================================
-dnf upgrade -y
-
-# EPELリポジトリの追加
-dnf install epel-release -y
-
-# デフォルトで無効
-# 使用するときは --enablerepo=epel
-dnf config-manager --disable epel
-
-dnf --enablerepo=epel upgrade -y
-
-dnf install -y samba-client cifs-utils
-cat $res_dir/fstab_kvm.user >> /etc/fstab
-
 
 # 各種パッケージのインストール
-dnf install wget git unzip bzip2 gcc gcc-c++ make automake kernel-devel patch perl-ExtUtils-MakeMaker libtool openssl-devel boost-devel cmake -y
+# dnf install wget git unzip bzip2 gcc gcc-c++ make automake kernel-devel patch perl-ExtUtils-MakeMaker libtool openssl-devel boost-devel cmake -y
 
-dnf --enablerepo=PowerTools install autogen nkf -y
-dnf --enablerepo=epel install dkms -y
+# dnf --enablerepo=PowerTools install autogen nkf -y
+# dnf --enablerepo=epel install dkms -y
 
-dnf install ccid -y
-dnf --enablerepo=PowerTools install pcsc-lite-devel -y
-dnf --enablerepo=epel install pcsc-tools -y
+# dnf install ccid -y
+# dnf --enablerepo=PowerTools install pcsc-lite-devel -y
+# dnf --enablerepo=epel install pcsc-tools -y
 
 # PCSC用のルールファイル作成
-cat $res_dir/pcsc.rules > /etc/polkit-1/rules.d/pcsc.rules
+# cat $res_dir/pcsc.rules > /etc/polkit-1/rules.d/pcsc.rules
 
-systemctl enable pcscd --now
+# systemctl enable pcscd --now
 
-# arib25のインストール
-mkdir ~/src
-cd ~/src
-git clone https://github.com/stz2012/libarib25.git
-cd libarib25/
-cmake .		# <- 「.」があることに注意
-make
-make install
-echo /usr/local/lib64 > /etc/ld.so.conf.d/usr-local-lib.conf
-ldconfig
+
+
 
 # 非公式ドライバのインストール
+#================================================
+# ファームウェアのインストール
+#================================================
+
+dnf install unzip gcc make -y
+
 cd ~/src
 git clone https://github.com/nns779/px4_drv
 cd px4_drv/fwtool/
@@ -63,12 +44,21 @@ unzip pxw3u4_BDA_ver1x64.zip
 cp -p it930x-firmware.bin /lib/firmware/
 cd ..
 
+#================================================
+# 非公式ドライバのインストール
+#================================================
+
+dnf install kernel-devel -y
+dnf --enablerepo=epel install dkms -y
+
 cat $res_dir/dkms.install > dkms.install
 bash dkms.install
 
 echo "================================================="
-echo "|一般ユーザでpcsc_scanが成功するかで確認してください|"
-echo "|リブートしてください！                           |"
+echo "リブートしてください"
+echo "リブート後に"
+echo "$ ls -l /dev/px4*"
+echo "を実行してデバイスファイルが作成されているか確認してください"
 echo "================================================="
 
 exit 0

@@ -1,4 +1,0 @@
-
-
-# ファイルサーバへのマウント
-//192.168.1.192/共有/録画 /mnt/rec/             cifs    uid=tv-rec,gid=tv-rec,password=""       0 0
