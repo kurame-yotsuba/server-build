@@ -14,25 +14,3 @@ dnf config-manager --disable epel
 
 dnf --enablerepo=epel upgrade -y
 
-#================================================
-# 日本語入力パッケージのインストール
-# リブートが必要
-# リブートのあとに設定が必要
-#================================================
-dnf install ibus-kkc -y
-
-# 参考：
-# https://ameblo.jp/arcadia-8160/entry-12553884495.html
-
-
-#================================================
-# 各種パッケージのインストール
-#================================================
-
-# .Net Core
-# 2.0とかも入れておいた方がいいかも
-dnf install dotnet-sdk-2.1 dotnet-sdk-3.0 dotnet-sdk-3.1 -y
-
-# KVM
-dnf install qemu-kvm virt-install virt-manager -y
-
