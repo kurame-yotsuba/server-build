@@ -11,7 +11,7 @@ res_dir=$SCRIPT_DIR/res
 # nodejsのインストール
 curl -sL https://rpm.nodesource.com/setup_12.x | bash -
 dnf upgrade -y
-dnf install nodejs
+dnf install nodejs -y
 
 # Mirakurunのインストール
 npm install pm2 -g
