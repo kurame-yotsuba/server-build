@@ -45,5 +45,5 @@ exit 0
 rivarun --list | sed 's/},/},\n/g'
 
 # 録画確認
-rivarun --b25 --sid 1024 --ch GR/27 15 test2.ts
+rivarun --b25 --sid 1024 --ch GR/27 120 test2.m2ts
 rivarun --b25 --mirakurun localhost:40772 --sid 1024 --ch GR/27 15 test3.ts
